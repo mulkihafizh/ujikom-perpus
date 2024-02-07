@@ -92,3 +92,17 @@ export const logout = async () => {
     },
   });
 };
+
+export const createStaff = async (body: any) => {
+  try {
+    const data = await User.create({
+      username: body.username,
+      email: body.email,
+      password: body.password,
+      role: "Staff",
+    });
+    return new Response(JSON.stringify(data), { status: 201 });
+  } catch (e) {
+    return new Response(JSON.stringify(e), { status: 500 });
+  }
+};
